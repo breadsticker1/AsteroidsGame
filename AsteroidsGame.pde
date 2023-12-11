@@ -1,11 +1,15 @@
 //your variable declSarations here
 star [] nightsky = new star [500];
 Spaceship bob = new Spaceship();
+ArrayList <Asteroid> Rocks = new ArrayList <Asteroid>();
 public void setup()
 {
   size(1000,1000);
   for(int i = 0; i < nightsky.length; i++){
     nightsky[i] = new star();
+  }
+  for(int i = 0; i < 14; i++){
+    Rocks.add(new Asteroid());
   }
 }
 
@@ -14,6 +18,13 @@ public void draw()
   background(0);
 for(int i = 0; i < nightsky.length; i++){
     nightsky[i].show();
+  }
+  for(int i = 0; i < Rocks.size(); i++){
+    Rocks.get(i).move();
+    Rocks.get(i).show();
+    float d = dist((float)bob.getX(), (float)bob.getY(), (float)Rocks.get(i).getX(), (float)Rocks.get(i).getY());
+    if(d<40)
+    Rocks.remove(i);
   }
  bob.show();
  bob.move();
